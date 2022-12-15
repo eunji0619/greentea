@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+</head>
+<style>
+    button{
+        background-color: rgb(56, 56, 56);
+        color: white;
+        font-size: 1em;
+        padding: 10px;
+        border: 0;
+        margin-right: 10px;
+    }
+    #menubar{
+        width: auto;
+        height: 45px;
+        background-color: rgb(56, 56, 56);
+        padding: 10px;
+    }
+    
+    table{
+        margin-top: 6px;
+        width: 100%;
+    }
+    table th{
+        background-color: rgb(78, 78, 78);
+        margin: 0 10px;
+        color: white;
+    }
+    input{
+        width: 250px;
+        height: 25px;
+    }
+    img{
+        width: 20px;
+        height: 20px;
+    }
+</style>
+<body>
+    <div id = whole>    <!-- 전체 감싸는 div -->
+        <header id = menubar>      <!-- 메인화면(상단바메뉴) header -->
+            <button><img src="./img/home.png" alt="">홈화면</button>
+            <button><img src="./img/post.png" alt=""> 게시판</button>
+            <button><img src="./img/writing.png" alt=""> 글작성</button>
+        </header>
+        <section id = postlist>     <!-- 내용div -->
+            <!-- <h2><img src="" alt="">게시판</h2> -->
+            <!-- <hr> -->
+            <!-- <input type="text" placeholder="검색어를 입력하세요."> -->
+            <!-- <table class="table">
+                <colgroup>
+                    <col width="10%" />
+                    <col width="25%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="30%" />
+                </colgroup> -->
+                <!-- <thead>        
+                    <tr>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일자</th>
+                    </tr>
+                </thead>
+            </table> -->
+        </section>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+        const section = document.createElement('section');  //상단바메뉴를 뺀 전체 내용
+        const h2 = document.createElement('h2');    //타이틀
+        const img = document.createElement('img');  //게시판 이미지
+        const hr = document.createElement('hr');    
+        const input = document.createElement('input');  //검색
+        const group = document.createElement('colgroup');
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tr = document.createElement('tr');
+
+        const width_arr = [10,25,10,10,30];
+        const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];
+
+        document.body.append(section);
+        section.setAttribute('id','post-list');
+        h2.innerHTML = '게시판';
+        h2.style.display = 'inline';    //h2의 기본속성인 줄바꿈 삭제
+        img.src = './img/post.png';
+        input.placeholder = '검색어를 입력하세요.';
+
+        section.append(img, h2, hr, input, table);
+        table.append(group,thead);
+        table.style.width = '100%';
+        width_arr.forEach(v=>{
+            const col = document.createElement('col');
+            col.style.cssText = `width : ${v}%`;
+            group.appendChild(col);
+        })
+        thead.appendChild(tr);
+        arr.forEach(v=>{
+            const th = document.createElement('th');
+            th.textContent = v;
+            tr.appendChild(th);
+        })
+    })
+</script>
+</html>
