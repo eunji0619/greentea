@@ -47,19 +47,19 @@
             <button><img src="./img/post.png" alt=""> 게시판</button>
             <button><img src="./img/writing.png" alt=""> 글작성</button>
         </header>
-        <section id = postlist>     <!-- 내용div -->
-            <!-- <h2><img src="" alt="">게시판</h2> -->
-            <!-- <hr> -->
-            <!-- <input type="text" placeholder="검색어를 입력하세요."> -->
-            <!-- <table class="table">
+        <!-- <section id = postlist>      내용div 
+            <h2><img src="" alt="">게시판</h2>
+            <hr>
+            <input type="text" placeholder="검색어를 입력하세요.">
+            <table class="table">
                 <colgroup>
                     <col width="10%" />
                     <col width="25%" />
                     <col width="10%" />
                     <col width="10%" />
                     <col width="30%" />
-                </colgroup> -->
-                <!-- <thead>        
+                </colgroup>
+                <thead>        
                     <tr>
                         <th>글번호</th>
                         <th>제목</th>
@@ -67,9 +67,16 @@
                         <th>조회수</th>
                         <th>작성일자</th>
                     </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>43</td>
+                        <td>34</td>
+                        <td>8</td>
+                        <td>2022-07-20 14 : 02 : 28</td>
+                    </tr>
                 </thead>
-            </table> -->
-        </section>
+            </table>
+        </section> -->
     </div>
 </body>
 <script>
@@ -79,15 +86,17 @@
         const img = document.createElement('img');  //게시판 이미지
         const hr = document.createElement('hr');    
         const input = document.createElement('input');  //검색
-        const group = document.createElement('colgroup');
-        const table = document.createElement('table');
-        const thead = document.createElement('thead');
+        const group = document.createElement('colgroup'); //각 컬럼에 width를 주기위한태그(colgroup 태그의 width 속성)
+        const table = document.createElement('table');  //테이블 생성
+        const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
         const tr = document.createElement('tr');
 
         const width_arr = [10,25,10,10,30];
         const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];
 
         document.body.append(section);
+        // section.style.marginTop = '30px';
+        section.style.margin = '30px 15px'
         section.setAttribute('id','post-list');
         h2.innerHTML = '게시판';
         h2.style.display = 'inline';    //h2의 기본속성인 줄바꿈 삭제
