@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenTea</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{            
+            const home_button = document.getElementById("home-button")            
+            const list_button = document.getElementById("lists-button")            
+            const write_button = document.getElementById("write-button")
+
+            write_button.addEventListener('click',(event)=>{
+                const write_con = document.createElement('div')
+                const hr01 = document.createElement('hr')
+                const hr02 = document.createElement('hr')
+                const hr03 = document.createElement('hr')
+                const hr04 = document.createElement('hr')
+                const head_con = document.createElement('div')
+                const icon_span = document.createElement('span')
+                const head_span = document.createElement('span')
+                const title_con = document.createElement('div')
+                const title_span = document.createElement('span')
+                const title_input = document.createElement('textarea')
+                const content_con = document.createElement('div')
+                const content_span = document.createElement('span')
+                const content_input = document.createElement('textarea')
+                const writer_con = document.createElement('div')
+                const writer_span = document.createElement('span')
+                const writer_input = document.createElement('textarea')
+                const image_con = document.createElement('div')
+                const image_span = document.createElement('span')
+                const image_select = document.createElement('select')
+                const image_option_none = document.createElement('option')
+                const image_option01 = document.createElement('option')
+                const image_option02 = document.createElement('option')
+                const image_option03 = document.createElement('option')
+                const button_con = document.createElement('div')
+                const regist_button = document.createElement('button')
+                const list_button = document.createElement('button')
+    
+                document.body.append(write_con)
+                write_con.append(hr01,head_con,hr02,title_con,content_con,writer_con,image_con,hr03,button_con,hr04)
+                head_con.append(icon_span,head_span)
+                title_con.append(title_span,title_input)
+                content_con.append(content_span,content_input)
+                writer_con.append(writer_span,writer_input)
+                image_con.append(image_span,image_select)
+                button_con.append(regist_button,list_button)
+                image_select.append(image_option_none,image_option01,image_option02,image_option03)
+    
+                Object.assign(hr01, {
+                    className: "hrs"
+                })
+                Object.assign(hr02, {
+                    className: "hrs"
+                })
+                Object.assign(hr03, {
+                    className: "hrs"
+                })
+                Object.assign(hr04, {
+                    className: "hrs"
+                })
+                // 선
+    
+                Object.assign(write_con, {
+                    className: "write_con"
+                })
+                Object.assign(head_con, {
+                className: "head_con"
+                })
+                Object.assign(icon_span, {
+                    id: "icon-span",
+                    textContent: "따봉"
+                })
+                Object.assign(head_span, {
+                    id: "head-span",
+                    textContent: "글작성"
+                })
+                Object.assign(title_con, {
+                    className: "middle_con"
+                })
+                Object.assign(title_span, {
+                    className: "middle_span",
+                    innerHTML: "&emsp;제목"
+                })
+                Object.assign(title_input, {
+                    className: "middle_input",
+                    placeholder: "제목을 입력하세요."
+                })
+                Object.assign(content_con, {
+                    className: "middle_con"
+                })
+                Object.assign(content_span, {
+                    className: "middle_span",
+                    innerHTML: "&emsp;내용"
+                })
+                Object.assign(content_input, {
+                    id : "content-input",
+                    placeholder: "내용을 입력하세요."
+                })
+                Object.assign(writer_con, {
+                    className: "middle_con"
+                })
+                Object.assign(writer_span, {
+                    className: "middle_span",
+                    textContent: "작성자"
+                })
+                Object.assign(writer_input, {
+                    className: "middle_input",
+                    placeholder: "닉네임을 입력하세요."
+                })
+                Object.assign(image_con, {
+                    className: "middle_con"
+                })
+                Object.assign(image_span, {
+                    className: "middle_span",
+                    id: "image-span",
+                    textContent: "이미지"
+                })
+                Object.assign(image_select, {
+                    id: "image-select"
+                })
+                Object.assign(image_option_none, {
+                    class: "image_option",
+                    textContent: "이미지 없음"
+                })
+                Object.assign(image_option01, {
+                    class: "image_option",
+                    textContent: "이미지01"
+                })
+                Object.assign(image_option02, {
+                    class: "image_option",
+                    textContent: "이미지02"
+                })
+                Object.assign(image_option03, {
+                    class: "image_option",
+                    textContent: "이미지03"
+                })
+                Object.assign(button_con, {
+                    className: "button_con"
+                })
+                Object.assign(regist_button, {
+                    id: "regist-button",
+                    textContent: "등록"
+                })
+                Object.assign(list_button, {
+                    id: "list-button",
+                    textContent: "목록"
+                })
+    
+    
+                    
+                function localLoad(){
+                    let memory = localStorage.getItem('data_box')
+                    return JSON.parse(memory)?? []
+                }
+    
+                function localSave(data){
+                    let memory = JSON.stringify(data)
+                    localStorage.setItem('data_box',memory)
+                }
+    
+                const data_box = localLoad()
+                console.log(data_box)
+                let count
+                if (data_box.length == 0) {
+                    count = 0
+                } else {
+                    count = data_box[data_box.length-1].id_num
+                    // 스토리지에서 받은 데이터(배열)의 마지막 요소의 id_num을 받아
+                    // count가 겹치지 않게 
+                }
+                    
+                regist_button.addEventListener('click',(event)=>{
+                    count++
+                    let now = new Date();  
+                    // id_num 1부터 시작합니다.
+                    const data ={
+                        id_num: count,
+                        title: title_input.value,
+                        views: 0,
+                        writer: writer_input.value,
+                        date: now,
+                        content: content_input.value,
+                    }
+                    // 스토리지에 고유 넘버, 제목, 조회수, 작성자, 시간, 내용 저장
+                    data_box.push(data)
+                    localSave(data_box)
+                    // 스토리지에 저장하고 바로 창 삭제??
+                    document.body.removeChild(write_con)
+                })
+    
+                list_button.addEventListener('click',(event)=>{
+                    document.body.removeChild(write_con)
+                    // 창 삭제 후 -> 목록 창 생성 or 메인 화면
+                })
+            })  
+        })
+
+    </script>
+</head>
+<body>    
+    <div id = whole>    <!-- 전체 감싸는 div -->
+        <header id = menubar>      <!-- 메인화면(상단바메뉴) header -->
+            <button class="header_button" id="home-button"><img src="./img/home.png" alt="">홈화면</button>
+            <button class="header_button" id="lists-button"><img src="./img/post.png" alt=""> 게시판</button>
+            <button class="header_button" id="write-button"><img src="./img/writing.png" alt=""> 글작성</button>
+        </header>
+    </div>
+</body>
+</html>

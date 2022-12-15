@@ -1,0 +1,84 @@
+.header_button{
+    background-color: rgb(56, 56, 56);
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+    border: 0;
+    margin-right: 10px;
+}
+#menubar{
+    width: auto;
+    height: 45px;
+    background-color: rgb(56, 56, 56);
+    padding: 10px;
+}        
+table{
+    margin-top: 6px;
+    width: 100%;
+}
+table th{
+    background-color: rgb(78, 78, 78);
+    margin: 0 10px;
+    color: white;
+}
+input{
+    width: 250px;
+    height: 25px;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* 입력창 css */
+.hrs {
+    width: 500px;
+}
+.write_con {
+    width: 500px;
+}
+#icon-span{           
+    position: relative;
+    left: 115px;
+}
+#head-span{         
+    position: relative;
+    left: 135px;
+    font-weight: bold;
+}
+.middle_input{
+    width: 300px;
+    height: 17px;
+    position: relative;
+    left: 120px;
+    resize: none;
+}
+#content-input{
+    width: 300px;
+    height: 200px;
+    position: relative;
+    left: 120px;
+    vertical-align: top;
+    resize: none;
+}
+.middle_span{
+    position: relative;
+    vertical-align: top;
+    left: 100px;
+}
+#image-select{            
+    position: relative;
+    left: 120px;
+}
+#regist-button{           
+    position: relative;
+    left: 170px;
+    background-color: skyblue
+}
+#list-button{           
+    position: relative;
+    left: 180px;
+    background-color: orange;
+}
