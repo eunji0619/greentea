@@ -7,7 +7,7 @@
     <title>게시판 목록</title>
 </head>
 <style>
-    button{
+    .tabs{
         background-color: rgb(56, 56, 56);
         color: white;
         font-size: 1em;
@@ -43,9 +43,9 @@
 <body>
     <div id = whole>    <!-- 전체 감싸는 div -->
         <header id = menubar>      <!-- 메인화면(상단바메뉴) header -->
-            <button><img src="./img/home.png" alt="">홈화면</button>
-            <button><img src="./img/post.png" alt=""> 게시판</button>
-            <button><img src="./img/writing.png" alt=""> 글작성</button>
+            <button class="tabs"><img src="./img/home.png" alt="">홈화면</button>
+            <button class="tabs"><img src="./img/post.png" alt=""> 게시판</button>
+            <button class="tabs"><img src="./img/writing.png" alt=""> 글작성</button>
         </header>
         <!-- <section id = postlist>      내용div 
             <h2><img src="" alt="">게시판</h2>
@@ -90,28 +90,44 @@
         const table = document.createElement('table');  //테이블 생성
         const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
         const tr = document.createElement('tr');
+        const button = document.createElement('button');    //글쓰기 버튼
 
         const width_arr = [10,25,10,10,30];
         const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];
 
         document.body.append(section);
-        // section.style.marginTop = '30px';
-        section.style.margin = '30px 15px'
-        section.setAttribute('id','post-list');
-        h2.innerHTML = '게시판';
-        h2.style.display = 'inline';    //h2의 기본속성인 줄바꿈 삭제
-        img.src = './img/post.png';
-        input.placeholder = '검색어를 입력하세요.';
-
-        section.append(img, h2, hr, input, table);
+        Object.assign(section,{
+            id: 'post-list',
+            margin: '30px 15px'
+        })
+        Object.assign(h2,{
+            innerHTML: '게시판',
+            style : 'display:inline'    //h2의 기본속성인 줄바꿈 해제
+        })
+        Object.assign(img,{
+            src : './img/post.png'
+        })
+        Object.assign(input,{
+            id : 'search_input',
+            placeholder : '검색어를 입력하세요.'
+        })
+        Object.assign(table,{
+            width : '100%'
+        })
+        Object.assign(button,{
+            id : 'btn-write',
+            textContent : '글쓰기',
+            backgroundColor: 'blue'
+        })
+        section.append(img, h2, hr, input, table, button);
         table.append(group,thead);
-        table.style.width = '100%';
+        thead.appendChild(tr);
+
         width_arr.forEach(v=>{
             const col = document.createElement('col');
             col.style.cssText = `width : ${v}%`;
             group.appendChild(col);
         })
-        thead.appendChild(tr);
         arr.forEach(v=>{
             const th = document.createElement('th');
             th.textContent = v;
