@@ -106,21 +106,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
         numtd.textContent = data_box[a].id_num;
         titletd.textContent = data_box[a].title;
-        writertd.textContent = data_box[a].views;
-        viewstd.textContent = data_box[a].writer;
+        writertd.textContent = data_box[a].writer;
+        viewstd.textContent = data_box[a].views;
         datatd.textContent = data_box[a].date;
 
         tbody.appendChild(tr1);
         tr1.append(numtd, titletd, writertd, viewstd, datatd);
 
         tr1.addEventListener('click', (event) => {
-            list_revise()
+            data_box[a].views++
+            if (document.getElementById("revise-div")) {
+                const div0 = document.getElementById("confirm-section")
+                const revise_div = document.getElementById("revise-div")
+                div0.removeChild(revise_div)
+            }
+            list_revise(a)
+            localSave(data_box)
+            start_list()
         })
     }
     // 리스트 작성 함수 끝
 
+    // 첫 시작 tbody 함수
+    const start_list = function () {
+        if (data_box.length !== 0) {
+            if (data_box.length > 10) {
+                for (let i = data_box.length - 1; i > data_box.length - 11; i--) {
+                    list_cteate(i)
+                }
+            } else {
+                for (let i = data_box.length - 1; i >= 0; i--) {
+                    list_cteate(i)
+                }
+            }
+        }
+    }
+    // 첫 시작 tbody 함수 끝
 
-    const list_revise = function () {
+    start_list()
+
+    const page_num = Math.ceil(data_box.length / 10)
+    // 나눴을 때 올림해주는 연산입니다. ex) 게시물이 45개일때 페이지는 5장이니까..
+    // 페이지 넘버를 미리 저장할게요
+    if (data_box.length > 0) {
+        for (let j = page_num; j > 0; j--) {
+            const page_number = document.createElement('span')
+            page_numbers.appendChild(page_number)
+            page_number.textContent = j
+            // 페이지 넘버를 append해줍니다.
+            page_number.addEventListener('click', (event) => {
+                const tbody_01 = document.getElementById("tbody-01")
+                table.removeChild(tbody_01)
+                // table에 tbody 태그를 만들어서 지우기 쉽게 만들었습니다.
+                // 지우고 다시 넣겠습니다.
+                const tbody = document.createElement('tbody')
+                tbody.setAttribute("id", "tbody-01")
+                table.appendChild(tbody)
+                if (j !== 1) {
+                    for (let k = data_box.length - 1 - (page_num - j) * 10; k > data_box.length - 11 - (page_num - j) * 10; k--) {
+                        list_cteate(k)
+                    }
+                } else {
+                    for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
+                        list_cteate(k)
+                    }
+                }
+                // 뒤에서 10개씩 끊어가는 느낌으로다가
+            })
+        }
+    }
+    //게시판 작성 끝
+
+    // 글 수정 함수 시작
+    const list_revise = function (a) {
 
         const div0 = document.getElementById("confirm-section")
         div0.setAttribute('class', 'dd')
@@ -227,34 +285,27 @@ document.addEventListener('DOMContentLoaded', () => {
         div6.append(span6, text6)
         div7.append(span7, img)
 
-        //오브젝트
-        const obj = {
-            id: count,
-            text: text2.value,
-            views: 0,
-            writer: text4.value,
-            date: now,
-            content: text6.value
-        }
-
         //local값
+        Object.assign(div00, {
+            id: "revise-div"
+        })
         Object.assign(text1, {
-
+            textContent: data_box[a].id_num
         })
         Object.assign(text2, {
-
+            textContent: data_box[a].title
         })
         Object.assign(text3, {
-
+            textContent: data_box[a].views
         })
         Object.assign(text4, {
-
+            textContent: data_box[a].writer
         })
         Object.assign(text5, {
-
+            textContent: data_box[a].date
         })
         Object.assign(text6, {
-
+            textContent: data_box[a].content
         })
 
 
@@ -289,46 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         button2.addEventListener('click', cor)
     }
+    // 글 수정 함수 끝
 
 
-
-
-
-
-    for (let i = data_box.length - 1; i > data_box.length - 11; i--) {
-        list_cteate(i)
-    }
-
-    const page_num = Math.ceil(data_box.length / 10)
-    // 나눴을 때 올림해주는 연산입니다. ex) 게시물이 45개일때 페이지는 5장이니까..
-    // 페이지 넘버를 미리 저장할게요
-    if (data_box.length > 0) {
-        for (let j = page_num; j > 0; j--) {
-            const page_number = document.createElement('span')
-            page_numbers.appendChild(page_number)
-            page_number.textContent = j
-            // 페이지 넘버를 append해줍니다.
-            page_number.addEventListener('click', (event) => {
-                const tbody_01 = document.getElementById("tbody-01")
-                table.removeChild(tbody_01)
-                // table에 tbody 태그를 만들어서 지우기 쉽게 만들었습니다.
-                // 지우고 다시 넣겠습니다.
-                const tbody = document.createElement('tbody')
-                tbody.setAttribute("id", "tbody-01")
-                table.appendChild(tbody)
-                if (j !== 1) {
-                    for (let k = data_box.length - 1 - (page_num - j) * 10; k > data_box.length - 11 - (page_num - j) * 10; k--) {
-                        list_cteate(k)
-                    }
-                } else {
-                    for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
-                        list_cteate(k)
-                    }
-                }
-            })
-        }
-    }
-    //게시판 작성 끝
 
     // 글작성 버튼 시작
     write_button.addEventListener('click', (event) => {
