@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 배경div */
+        .dd{
+            width: 1000px;
+            height: 750px;
+            background-color: #fff;
+        }
+         /* 클릭후 배경div */
+         .op0{
+                border: 1px solid #000;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+        /* 버튼  */
+        .btn_list{
+            background-color: orange;
+            border: 0;
+            margin: 5px;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .btn_co{
+            background-color: green;
+            border: 0;
+            margin: 5px;
+            padding: 10px;
+            color: white;
+        }
+        .btn_del{
+            background-color: red;
+            border: 0;
+            margin: 5px;
+            padding: 10px;
+            color: white;
+        }
+        .btn_before{
+            background-color: blueviolet;
+            border: 0;
+            margin: 5px;
+            padding: 10px;
+            color: white;
+        }
+        .btn_after{
+            background-color: blueviolet;
+            border: 0;
+            margin: 5px;
+            padding: 10px;
+            color: white;
+        }
+        /* img */
+        .sp{
+            width: 200px;
+            height: 200px;
+            color: white;
+            display: block;
+            margin-left: 10px;
+        }
+        /* div전체 */
+        .op{
+            margin: 10px;
+        }
+
+        /* div전체 밑줄 */
+        .op:after {
+            content: "";
+            display: block;
+            border-bottom: 1px solid #000;
+            margin: 5px;
+            }
+            /* input */
+        textarea{
+            display: block;
+            margin-left: 150px;
+        }
+
+       
+           
+          
+    </style>
+    
+    <script>
+       document.addEventListener("DOMContentLoaded",()=>{
+        const div0 = document.createElement('div')
+        document.body.append(div0)
+        div0.setAttribute('class','dd')
+        //클릭후 div화면 on
+        let arr = [];
+        let count = 0;
+        let views = 0;
+        let now = 0;
+
+       
+                //타이틀 글생성
+                const div00 =document.createElement('div')//버튼후 젤큰div
+                const div1 = document.createElement('div') //글번호
+                const div2 = document.createElement('div') //제목
+                const div3 = document.createElement('div') //조회수
+                const div4 = document.createElement('div') //작성자
+                const div5 = document.createElement('div') //작성일시
+                const div6 = document.createElement('div') //내용
+                const div7 = document.createElement('div') //첨부이미지
+                const img = document.createElement('img') //이미지내용
+                //내용 생성
+                const text1 =document.createElement('textarea')
+                const text2 =document.createElement('textarea')
+                const text3 =document.createElement('textarea')
+                const text4 =document.createElement('textarea')
+                const text5 =document.createElement('textarea')
+                const text6 =document.createElement('textarea')
+                
+                //버튼생성
+                const button1 = document.createElement('button')
+                const button2 = document.createElement('button')
+                const button3 = document.createElement('button')
+                const button4 = document.createElement('button')
+                const button5 = document.createElement('button')
+                
+                //div 타이틀
+                div1.textContent ='글번호'
+                div2.textContent ='제목'
+                div3.textContent ='조회수'
+                div4.textContent ='작성자'
+                div5.textContent ='작성일시'
+                div6.textContent ='내용'
+                div7.textContent ='첨부이미지'
+                //div class
+                div00.setAttribute('class','op0')
+                div1.setAttribute('class','op')
+                div2.setAttribute('class','op')
+                div3.setAttribute('class','op')
+                div4.setAttribute('class','op')
+                div5.setAttribute('class','op')
+                div6.setAttribute('class','op')
+                div7.setAttribute('class','op')
+
+                //img 넣기
+                img.setAttribute('src','/img/코딩싫어.jpg')
+                img.setAttribute('class','sp')
+                
+                //textarea Css
+                text1.style.cssText = 'border : 1px soild #000;'
+                text2.style.cssText = 'border : 1px soild #000;'
+                text3.style.cssText = 'border : 1px soild #000;'
+                text4.style.cssText = 'border : 1px soild #000;'
+                text5.style.cssText = 'border : 1px soild #000;'
+                text6.style.cssText = 'border : 1px soild #000;'
+                
+                //버튼 타이틀
+                button1.textContent = '목록'
+                button2.textContent = '저장'
+                button3.textContent = '삭제'
+                button4.textContent = '이전글'
+                button5.textContent = '다음글'
+                //버튼 class
+                button1.setAttribute('class','btn_list') 
+                button2.setAttribute('class','btn_co')
+                button3.setAttribute('class','btn_del')
+                button4.setAttribute('class','btn_before')
+                button5.setAttribute('class','btn_after')
+
+
+                
+                
+                // 출력
+                div0.appendChild(div00).append(div1,div2,div3,div4,div5,div6,div7,
+                button1,button2,button3,button4,button5)
+                div1.appendChild(text1)
+                div2.appendChild(text2)
+                div3.appendChild(text3)
+                div4.appendChild(text4)
+                div5.appendChild(text5)
+                div6.appendChild(text6)
+                div7.appendChild(img)
+
+                //오브젝트
+                const obj  = {id:count,
+                    text:text2.value,
+                    views:0,
+                    writer: text4.value,
+                    date:now,
+                    content:text6.value
+                    }
+
+                //local값
+                Object.assign(text1,{
+                 
+                })
+                Object.assign(text2,{
+                    
+                })
+                Object.assign(text3,{
+                    
+                })
+                Object.assign(text4,{
+                    
+                })
+                Object.assign(text5,{
+                    
+                })
+                Object.assign(text6,{
+                    
+                })
+               
+
+                // 삭제버튼
+                function del(){
+                 div0.removeChild(div00)
+                }
+                button3.addEventListener('click',del)
+                // 저장버튼
+                let state = false
+                function cor(){
+                    // div1.removeChild(input1)
+                    if(!state){
+                        text1.style.cssText = 'border : 0;'
+                        text2.style.cssText = 'border : 0;'
+                        text3.style.cssText = 'border : 0;'
+                        text4.style.cssText = 'border : 0;'
+                        text5.style.cssText = 'border : 0;'
+                        text6.style.cssText = 'border : 0;'
+                        arr.push(obj)
+                        localStorage.setItem('good',JSON.stringify(arr))
+                        console.log(arr)}
+                    // else{
+                    //     input1.style.cssText = 'border : 0;'
+                    //     input2.style.cssText = 'border : 0;'
+                    //     input3.style.cssText = 'border : 0;'
+                    //     input4.style.cssText = 'border : 0;'
+                    //     input5.style.cssText = 'border : 0;'
+                    //     input6.style.cssText = 'border : 0;'}
+                    // state = !state
+                }
+                button2.addEventListener('click',cor)
+              
+
+            
+       
+        
+}) 
+       
+        
+
+   
+    </script>
+</head>
+<body>
+    <div style="border: 0;"></div>
+</body>
+</html>
