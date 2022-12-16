@@ -90,10 +90,30 @@
         const table = document.createElement('table');  //테이블 생성
         const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
         const tr = document.createElement('tr');
+        const numtd = document.createElement('td');         //글번호 td
+        const titletd = document.createElement('td');       //제목 td
+        const writertd = document.createElement('td');      //작성자 td
+        const viewstd = document.createElement('td');       //조회수 td
+        const datatd = document.createElement('td');        //작성일자 td
         const button = document.createElement('button');    //글쓰기 버튼
 
-        const width_arr = [10,25,10,10,30];
-        const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];
+        const width_arr = [10,25,10,10,30];     //각 컬럼에 width 부여
+        const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];     //컬럼 제목들
+        const data = {
+            id_num: 1,
+            title: "안녕",
+            views: 0,
+            writer: "나",
+            data: "now"
+        }
+        const data_box = [];
+        data_box.push(data);
+        (data_box[0].title) 
+
+        data.forEach(v=>{
+
+        })
+        
 
         document.body.append(section);
         Object.assign(section,{
@@ -102,7 +122,7 @@
         })
         Object.assign(h2,{
             innerHTML: '게시판',
-            style : 'display:inline'    //h2의 기본속성인 줄바꿈 해제
+            style : 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
         })
         Object.assign(img,{
             src : './img/post.png'
@@ -117,7 +137,7 @@
         Object.assign(button,{
             id : 'btn-write',
             textContent : '글쓰기',
-            backgroundColor: 'blue'
+            style: 'background-color:blue;'
         })
         section.append(img, h2, hr, input, table, button);
         table.append(group,thead);
@@ -133,6 +153,7 @@
             th.textContent = v;
             tr.appendChild(th);
         })
+        
     })
 </script>
 </html>
