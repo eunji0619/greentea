@@ -7,8 +7,30 @@
     <title>게시판 목록</title>
 </head>
 <style>
-    /* 통일 상단바메뉴 */
-    img{
+    /* header*/
+    #header{
+        width: auto;
+        height: 200px;
+    }
+    .header_img{
+        width: auto;
+        height: 200px;
+    }
+    /* aside */
+    /* #aside{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(167, 167, 167);
+        display: flex;
+    } */
+    /* footer */
+    /* #footer{
+        width: auto;
+        height: 100px;
+        background-color: rgb(116, 116, 116);
+    } */
+    /* nav메뉴 */
+    .nav_img{
         width: 20px;
         height: 20px;
     }
@@ -28,7 +50,11 @@
     }
     
     /* 게시글 section */
+    #whole{
+        /* display: flex; */
+    }
     #post-section{
+        flex-direction: column;
         margin-top: 10px;
         padding: 10px;
         border: 1px solid black;
@@ -64,12 +90,22 @@
     }
 </style>
 <body>
-    <div id = whole>    <!-- 전체 감싸는 div -->
-        <nav id = menubar>      <!-- 메인화면(상단바메뉴) header -->
-            <button class="tabs"><img class = 'img' src="./img/home.png" alt="">홈화면</button>
-            <button class="tabs"><img class = 'img' src="./img/post.png" alt=""> 게시판</button>
-            <button class="tabs"><img class = 'img' src="./img/writing.png" alt=""> 글작성</button>
+    <div id="whole">    <!-- 전체 감싸는 div -->
+        <header id="header">    
+            <img class="header_img" src="./img/mmm.jpg" alt="">
+        </header>
+        <aside id="aside">
+
+        </aside>
+        <nav id="menubar">      <!-- 메인화면(nav메뉴) -->
+            <button class="tabs"><img class = 'nav_img' src="./img/home.png" alt="">홈화면</button>
+            <button class="tabs"><img class = 'nav_img' src="./img/post.png" alt=""> 게시판</button>
+            <button class="tabs"><img class = 'nav_img' src="./img/writing.png" alt=""> 글작성</button>
         </nav>
+        
+        <footer id="footer">
+
+        </footer>
     </div>
 </body>
 <script>
