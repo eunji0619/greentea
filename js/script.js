@@ -300,14 +300,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const page_num = Math.ceil(data_box.length / 10)
+    // 나눴을 때 올림해주는 연산입니다. ex) 게시물이 45개일때 페이지는 5장이니까..
+    // 페이지 넘버를 미리 저장할게요
     if (data_box.length > 0) {
         for (let j = page_num; j > 0; j--) {
             const page_number = document.createElement('span')
             page_numbers.appendChild(page_number)
             page_number.textContent = j
+            // 페이지 넘버를 append해줍니다.
             page_number.addEventListener('click', (event) => {
                 const tbody_01 = document.getElementById("tbody-01")
                 table.removeChild(tbody_01)
+                // table에 tbody 태그를 만들어서 지우기 쉽게 만들었습니다.
+                // 지우고 다시 넣겠습니다.
                 const tbody = document.createElement('tbody')
                 tbody.setAttribute("id", "tbody-01")
                 table.appendChild(tbody)
