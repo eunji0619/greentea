@@ -33,29 +33,29 @@ img{
 
 
 /* 입력창 css */
-.hrs {
+.write_hrs {
     width: 500px;
 }
-.write_con {
+.write_write_con {
     width: 500px;
 }
-#icon-span{           
+#write-icon-span{           
     position: relative;
     left: 115px;
 }
-#head-span{         
+#write-head-span{         
     position: relative;
     left: 135px;
     font-weight: bold;
 }
-.middle_input{
+.write_middle_input{
     width: 300px;
     height: 17px;
     position: relative;
     left: 120px;
     resize: none;
 }
-#content-input{
+#write-content-input{
     width: 300px;
     height: 200px;
     position: relative;
@@ -63,21 +63,21 @@ img{
     vertical-align: top;
     resize: none;
 }
-.middle_span{
+.write_middle_span{
     position: relative;
     vertical-align: top;
     left: 100px;
 }
-#image-select{            
+#write-image-select{            
     position: relative;
     left: 120px;
 }
-#regist-button{           
+#write-regist-button{           
     position: relative;
     left: 170px;
     background-color: skyblue
 }
-#list-button{           
+#write-list-button{           
     position: relative;
     left: 180px;
     background-color: orange;
