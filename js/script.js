@@ -290,13 +290,10 @@ document.addEventListener('DOMContentLoaded', () => {
         button2.addEventListener('click', cor)
     }
 
-
-
-
-
-
     for (let i = data_box.length - 1; i > data_box.length - 11; i--) {
-        list_cteate(i)
+        if(data_box.length!==0){
+            list_cteate(i)
+        }
     }
 
     const page_num = Math.ceil(data_box.length / 10)
