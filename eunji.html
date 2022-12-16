@@ -11,24 +11,37 @@
     #header{
         width: auto;
         height: 200px;
+        margin-bottom: 10px;
     }
     .header_img{
         width: auto;
         height: 200px;
     }
     /* aside */
-    /* #aside{
-        width: 100px;
-        height: 100px;
-        background-color: rgb(167, 167, 167);
+    .container{
+        /* width: 10%;
+        height: 400px;
+        background-color: rgb(167, 167, 167); */
         display: flex;
-    } */
+        flex-direction: column;
+    }
+    #aside{
+        width: 14%;
+        margin-right: 1%;
+        height: 500px;
+        background-color: aqua;
+    }
+    .container2{
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+    }
     /* footer */
-    /* #footer{
+    #footer{
         width: auto;
         height: 100px;
         background-color: rgb(116, 116, 116);
-    } */
+    }
     /* nav메뉴 */
     .nav_img{
         width: 20px;
@@ -51,10 +64,10 @@
     
     /* 게시글 section */
     #whole{
-        /* display: flex; */
+        width: 85%;
     }
     #post-section{
-        flex-direction: column;
+        width: auto;
         margin-top: 10px;
         padding: 10px;
         border: 1px solid black;
@@ -90,26 +103,32 @@
     }
 </style>
 <body>
-    <div id="whole">    <!-- 전체 감싸는 div -->
+   <div class="container">
+
         <header id="header">    
             <img class="header_img" src="./img/mmm.jpg" alt="">
         </header>
-        <aside id="aside">
 
-        </aside>
-        <nav id="menubar">      <!-- 메인화면(nav메뉴) -->
-            <button class="tabs"><img class = 'nav_img' src="./img/home.png" alt="">홈화면</button>
-            <button class="tabs"><img class = 'nav_img' src="./img/post.png" alt=""> 게시판</button>
-            <button class="tabs"><img class = 'nav_img' src="./img/writing.png" alt=""> 글작성</button>
-        </nav>
-        
+        <div class="container2">
+            <aside id="aside"></aside>
+            <div id="whole">    <!-- 전체 감싸는 div -->
+                <nav id="menubar">      <!-- 메인화면(nav메뉴) -->
+                    <button class="tabs"><img class = 'nav_img' src="./img/home.png" alt="">홈화면</button>
+                    <button class="tabs"><img class = 'nav_img' src="./img/post.png" alt=""> 게시판</button>
+                    <button class="tabs"><img class = 'nav_img' src="./img/writing.png" alt=""> 글작성</button>
+                </nav>
+            </div>
+        </div>
+
         <footer id="footer">
-
+            
         </footer>
     </div>
+   
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", ()=>{
+        const whole = document.querySelector('#whole');
         const section = document.createElement('section');  //상단바메뉴를 뺀 전체 내용
         const h2 = document.createElement('h2');    //타이틀
         const img = document.createElement('img');  //게시판 이미지
@@ -133,7 +152,8 @@
         const data_box = [];
         data_box.push(data);
 
-        document.body.append(section);
+
+        whole.append(section);
         section.append(img, h2, hr, input, table, button);
         table.append(group,thead);
         thead.appendChild(tr);
