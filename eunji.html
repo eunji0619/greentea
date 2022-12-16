@@ -31,6 +31,9 @@
         margin: 0 10px;
         color: white;
     }
+    tr{
+        text-align: center;
+    }
     input{
         width: 250px;
         height: 25px;
@@ -90,11 +93,7 @@
         const table = document.createElement('table');  //테이블 생성
         const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
         const tr = document.createElement('tr');
-        const numtd = document.createElement('td');         //글번호 td
-        const titletd = document.createElement('td');       //제목 td
-        const writertd = document.createElement('td');      //작성자 td
-        const viewstd = document.createElement('td');       //조회수 td
-        const datatd = document.createElement('td');        //작성일자 td
+        
         const button = document.createElement('button');    //글쓰기 버튼
 
         const width_arr = [10,25,10,10,30];     //각 컬럼에 width 부여
@@ -108,12 +107,7 @@
         }
         const data_box = [];
         data_box.push(data);
-        (data_box[0].title) 
-
-        data.forEach(v=>{
-
-        })
-        
+        (data_box[0].title)        
 
         document.body.append(section);
         Object.assign(section,{
@@ -153,7 +147,23 @@
             th.textContent = v;
             tr.appendChild(th);
         })
-        
+        for(let i = 0; i < 10; i++){
+            const tr1 = document.createElement("tr");
+            const numtd = document.createElement('td');         //글번호 td
+            const titletd = document.createElement('td');       //제목 td
+            const writertd = document.createElement('td');      //작성자 td
+            const viewstd = document.createElement('td');       //조회수 td
+            const datatd = document.createElement('td');        //작성일자 td
+            
+            numtd.textContent = data_box[0].id_num;
+            titletd.textContent = data_box[0].title;
+            writertd.textContent = data_box[0].views;
+            viewstd.textContent = data_box[0].writer;
+            datatd.textContent = data_box[0].data;
+
+            thead.appendChild(tr1);
+            tr1.append(numtd,titletd,writertd,viewstd,datatd);
+        }
     })
 </script>
 </html>
