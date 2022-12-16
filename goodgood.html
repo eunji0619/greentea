@@ -6,71 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* 배경div */
+        /* 상단부분 */
+        .header_button{
+    background-color: rgb(56, 56, 56);
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+    border: 0;
+    margin-right: 10px;
+}
+#menubar{
+    width: auto;
+    height: 45px;
+    background-color: rgb(56, 56, 56);
+    padding: 10px;
+}        
+table{
+    margin-top: 6px;
+    width: 100%;
+}
+table th{
+    background-color: rgb(78, 78, 78);
+    margin: 0 10px;
+    color: white;
+}
+input{
+    width: 250px;
+    height: 25px;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+        /* 전체배경div */
         .dd{
-            width: 1000px;
-            height: 750px;
+            margin-top: 10px;
+            width: auto;
+            height: 850px;
             background-color: #fff;
         }
          /* 클릭후 배경div */
-         .op0{
+         .div_op0{
                 border: 1px solid #000;
                 width: 100%;
                 height: 100%;
                 border-radius: 10px;
             }
         /* 버튼  */
-        .btn_list{
-            background-color: orange;
+        button{
             border: 0;
             margin: 5px;
             padding: 10px;
             color: white;
-            text-align: center;
+            padding: 5px 15px 5px 15px;
+            
         }
-        .btn_co{
-            background-color: green;
-            border: 0;
-            margin: 5px;
-            padding: 10px;
-            color: white;
-        }
-        .btn_del{
-            background-color: red;
-            border: 0;
-            margin: 5px;
-            padding: 10px;
-            color: white;
-        }
-        .btn_before{
-            background-color: blueviolet;
-            border: 0;
-            margin: 5px;
-            padding: 10px;
-            color: white;
-        }
-        .btn_after{
-            background-color: blueviolet;
-            border: 0;
-            margin: 5px;
-            padding: 10px;
-            color: white;
-        }
-        /* img */
+        .btn_list{background-color: orange;}
+        .btn_co{background-color: green;}
+        .btn_del{ background-color: red;}
+        .btn_before{background-color: blueviolet;}
+        .btn_after{background-color: blueviolet;}
+        /* 첨부파일 이미지 */
         .sp{
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             color: white;
             display: block;
-            margin-left: 10px;
+            margin: 10px 0 10px 10px;
         }
         /* div전체 */
-        .op{
+        .div_op{
             margin: 10px;
         }
 
         /* div전체 밑줄 */
-        .op:after {
+        .div_op:after {
             content: "";
             display: block;
             border-bottom: 1px solid #000;
@@ -80,8 +90,15 @@
         textarea{
             display: block;
             margin-left: 150px;
+            position: relative;
+            bottom: 12px;
         }
-
+        /* span */
+        .span_op{
+            position: relative;
+            top: 15px;
+            margin-left: 20px;
+        }
        
            
           
@@ -123,27 +140,43 @@
                 const button3 = document.createElement('button')
                 const button4 = document.createElement('button')
                 const button5 = document.createElement('button')
+                //글머리
+                const span1 = document.createElement('span')
+                const span2 = document.createElement('span')
+                const span3 = document.createElement('span')
+                const span4 = document.createElement('span')
+                const span5 = document.createElement('span')
+                const span6 = document.createElement('span')
+                const span7 = document.createElement('span')
+
+                //span class
+                span1.setAttribute('class','span_op')
+                span2.setAttribute('class','span_op')
+                span3.setAttribute('class','span_op')
+                span4.setAttribute('class','span_op')
+                span5.setAttribute('class','span_op')
+                span6.setAttribute('class','span_op')
                 
                 //div 타이틀
-                div1.textContent ='글번호'
-                div2.textContent ='제목'
-                div3.textContent ='조회수'
-                div4.textContent ='작성자'
-                div5.textContent ='작성일시'
-                div6.textContent ='내용'
-                div7.textContent ='첨부이미지'
+                span1.textContent ='글번호'
+                span2.textContent ='제목'
+                span3.textContent ='조회수'
+                span4.textContent ='작성자'
+                span5.textContent ='작성일시'
+                span6.textContent ='내용'
+                span7.textContent ='첨부이미지'
                 //div class
-                div00.setAttribute('class','op0')
-                div1.setAttribute('class','op')
-                div2.setAttribute('class','op')
-                div3.setAttribute('class','op')
-                div4.setAttribute('class','op')
-                div5.setAttribute('class','op')
-                div6.setAttribute('class','op')
-                div7.setAttribute('class','op')
+                div00.setAttribute('class','div_op0')
+                div1.setAttribute('class','div_op')
+                div2.setAttribute('class','div_op')
+                div3.setAttribute('class','div_op')
+                div4.setAttribute('class','div_op')
+                div5.setAttribute('class','div_op')
+                div6.setAttribute('class','div_op')
+                div7.setAttribute('class','div_op')
 
                 //img 넣기
-                img.setAttribute('src','/img/코딩싫어.jpg')
+                img.setAttribute('src','/goodimg/코딩싫어.jpg')
                 img.setAttribute('class','sp')
                 
                 //textarea Css
@@ -160,6 +193,7 @@
                 button3.textContent = '삭제'
                 button4.textContent = '이전글'
                 button5.textContent = '다음글'
+
                 //버튼 class
                 button1.setAttribute('class','btn_list') 
                 button2.setAttribute('class','btn_co')
@@ -167,19 +201,16 @@
                 button4.setAttribute('class','btn_before')
                 button5.setAttribute('class','btn_after')
 
-
-                
-                
                 // 출력
                 div0.appendChild(div00).append(div1,div2,div3,div4,div5,div6,div7,
                 button1,button2,button3,button4,button5)
-                div1.appendChild(text1)
-                div2.appendChild(text2)
-                div3.appendChild(text3)
-                div4.appendChild(text4)
-                div5.appendChild(text5)
-                div6.appendChild(text6)
-                div7.appendChild(img)
+                div1.append(span1,text1)
+                div2.append(span2,text2)
+                div3.append(span3,text3)
+                div4.append(span4,text4)
+                div5.append(span5,text5)
+                div6.append(span6,text6)
+                div7.append(span7,img)
 
                 //오브젝트
                 const obj  = {id:count,
@@ -239,20 +270,24 @@
                     //     input6.style.cssText = 'border : 0;'}
                     // state = !state
                 }
-                button2.addEventListener('click',cor)
-              
-
-            
-       
-        
+                button2.addEventListener('click',cor)        
 }) 
        
-        
-
-   
     </script>
 </head>
 <body>
-    <div style="border: 0;"></div>
+    <div id=whole> <!-- 전체 감싸는 div -->
+        <header id=menubar> <!-- 메인화면(상단바메뉴) header -->
+            <button class="header_button" id="home-button"><img src="./img/home.png" alt="">홈화면</button>
+            <button class="header_button" id="lists-button"><img src="./img/post.png" alt=""> 게시판</button>
+            <button class="header_button" id="write-button"><img src="./img/writing.png" alt=""> 글작성</button>
+        </header>
+        <section id="write-section"></section>
+        <!--글작성 섹션  -->
+        <section id="confirm-section"></section>
+        <!-- 글 확인? 섹션 -->
+        <section id="lists-section"></section>
+        <!-- 게시판 섹션 -->
+    </div>
 </body>
 </html>
