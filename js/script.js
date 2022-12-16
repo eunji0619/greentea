@@ -204,24 +204,25 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 // 글작성 버튼 끝
 
-    // ex) data.length가 45일때
-    for (let i = 0; i < data.length / 10; i++) {
-        // 어차피 <=가 아닌 < 이거 니까 나누기 10 했을때 소수점을 생각할 필요가 없다.
-        const list_num = document.createElement('span')
-        lists_footer.appendChild(list_num)
-        // 하단에 숫자 부여
-        list_num.textContent = `${data.length / 10 - data.length % 10 + 1 - i}`
-        // 보통 역순으로 표시되니까 ex) 5 4 3 2 1
-        list_num.addEventListener('click', (event) => {
-            lists_div.removeChild(lists_middle)
-            // 작성하기 전에 전 게시글들을 지우고
-            for (let j = data.length - 1; j > data.length - 1 - (10 * (i + 1)); j--) {
-                data[j] //data[j]에서 뽑아낸 데이타로 한 줄 작성
-                // 이걸 10번 반복 ex) 45~36까지
-            }
-        })
-        // 5번이라는 span에 게시글 45~36번까지 게시글을 10개 생성하는 이벤트가 부여
-        // 5라고 적혀있지만 첫번째 버튼, 다섯번째 버튼까지 작성
-    }
+    // // ex) data.length가 45일때
+    // for (let i = 0; i < data.length / 10; i++) {
+    //     // 어차피 <=가 아닌 < 이거 니까 나누기 10 했을때 소수점을 생각할 필요가 없다.
+    //     const list_num = document.createElement('span')
+    //     lists_footer.appendChild(list_num)
+    //     // 하단에 숫자 부여
+    //     list_num.textContent = `${data.length / 10 - data.length % 10 + 1 - i}`
+    //     // 보통 역순으로 표시되니까 ex) 5 4 3 2 1
+    //     list_num.addEventListener('click', (event) => {
+    //         lists_div.removeChild(lists_middle)
+    //         // 작성하기 전에 전 게시글들을 지우고
+    //         for (let j = data.length - 1; j > data.length - 1 - (10 * (i + 1)); j--) {
+    //             data[j] //data[j]에서 뽑아낸 데이타로 한 줄 작성
+    //             // 이걸 10번 반복 ex) 45~36까지
+    //         }
+    //     })
+    //     // 5번이라는 span에 게시글 45~36번까지 게시글을 10개 생성하는 이벤트가 부여
+    //     // 5라고 적혀있지만 첫번째 버튼, 다섯번째 버튼까지 작성
+    // }
 
+  
 })
