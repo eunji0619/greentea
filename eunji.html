@@ -7,6 +7,17 @@
     <title>게시판 목록</title>
 </head>
 <style>
+    /* 통일 상단바메뉴 */
+    img{
+        width: 20px;
+        height: 20px;
+    }
+    #menubar{
+        width: auto;
+        height: 45px;
+        background-color: rgb(56, 56, 56);
+        padding: 10px;
+    }
     .tabs{
         background-color: rgb(56, 56, 56);
         color: white;
@@ -15,71 +26,50 @@
         border: 0;
         margin-right: 10px;
     }
-    #menubar{
-        width: auto;
-        height: 45px;
-        background-color: rgb(56, 56, 56);
-        padding: 10px;
-    }
     
-    table{
-        margin-top: 6px;
-        width: 100%;
+    /* 게시글 section */
+    #post-section{
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
     }
-    table th{
-        background-color: rgb(78, 78, 78);
-        margin: 0 10px;
-        color: white;
+    #post-img{
+        width: 20px;
+        height: 20px;
     }
-    tr{
-        text-align: center;
-    }
-    input{
+    #post-searchinput{
         width: 250px;
         height: 25px;
     }
-    img{
-        width: 20px;
-        height: 20px;
+    #post-table{
+        margin-top: 6px;
+        width: 100%;
+        border-collapse: collapse
+    }
+    #post-th{
+        background-color: rgb(100, 99, 99);
+        margin: 0 10px;
+        color: white;
+        border-right: 2px solid white;
+    }
+    #post-btnwrite{
+        margin-top: 30px;
+        width: 100px;
+        height: 30px;
+        background-color: rgb(152, 152, 219);
+        border: 0px;
+        border-radius: 5px;
+        color: white;
     }
 </style>
 <body>
     <div id = whole>    <!-- 전체 감싸는 div -->
-        <header id = menubar>      <!-- 메인화면(상단바메뉴) header -->
-            <button class="tabs"><img src="./img/home.png" alt="">홈화면</button>
-            <button class="tabs"><img src="./img/post.png" alt=""> 게시판</button>
-            <button class="tabs"><img src="./img/writing.png" alt=""> 글작성</button>
-        </header>
-        <!-- <section id = postlist>      내용div 
-            <h2><img src="" alt="">게시판</h2>
-            <hr>
-            <input type="text" placeholder="검색어를 입력하세요.">
-            <table class="table">
-                <colgroup>
-                    <col width="10%" />
-                    <col width="25%" />
-                    <col width="10%" />
-                    <col width="10%" />
-                    <col width="30%" />
-                </colgroup>
-                <thead>        
-                    <tr>
-                        <th>글번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>조회수</th>
-                        <th>작성일자</th>
-                    </tr>
-                    <tr>
-                        <td>44</td>
-                        <td>43</td>
-                        <td>34</td>
-                        <td>8</td>
-                        <td>2022-07-20 14 : 02 : 28</td>
-                    </tr>
-                </thead>
-            </table>
-        </section> -->
+        <nav id = menubar>      <!-- 메인화면(상단바메뉴) header -->
+            <button class="tabs"><img class = 'img' src="./img/home.png" alt="">홈화면</button>
+            <button class="tabs"><img class = 'img' src="./img/post.png" alt=""> 게시판</button>
+            <button class="tabs"><img class = 'img' src="./img/writing.png" alt=""> 글작성</button>
+        </nav>
     </div>
 </body>
 <script>
@@ -93,12 +83,11 @@
         const table = document.createElement('table');  //테이블 생성
         const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
         const tr = document.createElement('tr');
-        
         const button = document.createElement('button');    //글쓰기 버튼
 
-        const width_arr = [10,25,10,10,30];     //각 컬럼에 width 부여
+        const width_arr = [10,25,10,10,30];     //각 컬럼에 width 부여 : colgroup
         const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];     //컬럼 제목들
-        const data = {
+        const data = {  //object 생성
             id_num: 1,
             title: "안녕",
             views: 0,
@@ -107,32 +96,8 @@
         }
         const data_box = [];
         data_box.push(data);
-        (data_box[0].title)        
 
         document.body.append(section);
-        Object.assign(section,{
-            id: 'post-list',
-            margin: '30px 15px'
-        })
-        Object.assign(h2,{
-            innerHTML: '게시판',
-            style : 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
-        })
-        Object.assign(img,{
-            src : './img/post.png'
-        })
-        Object.assign(input,{
-            id : 'search_input',
-            placeholder : '검색어를 입력하세요.'
-        })
-        Object.assign(table,{
-            width : '100%'
-        })
-        Object.assign(button,{
-            id : 'btn-write',
-            textContent : '글쓰기',
-            style: 'background-color:blue;'
-        })
         section.append(img, h2, hr, input, table, button);
         table.append(group,thead);
         thead.appendChild(tr);
@@ -146,7 +111,12 @@
             const th = document.createElement('th');
             th.textContent = v;
             tr.appendChild(th);
+            Object.assign(th,{
+                id : 'post-th'
+            })
         })
+
+        //테이블 목록 출력
         for(let i = 0; i < 10; i++){
             const tr1 = document.createElement("tr");
             const numtd = document.createElement('td');         //글번호 td
@@ -154,16 +124,44 @@
             const writertd = document.createElement('td');      //작성자 td
             const viewstd = document.createElement('td');       //조회수 td
             const datatd = document.createElement('td');        //작성일자 td
-            
+
             numtd.textContent = data_box[0].id_num;
             titletd.textContent = data_box[0].title;
             writertd.textContent = data_box[0].views;
             viewstd.textContent = data_box[0].writer;
             datatd.textContent = data_box[0].data;
-
+            
             thead.appendChild(tr1);
             tr1.append(numtd,titletd,writertd,viewstd,datatd);
+            Object.assign(tr1,{
+                id : 'post-tr1',
+                style : 'border-bottom: 1px solid rgb(204, 204, 204); text-align: center;'
+            })
         }
+        Object.assign(section,{
+            id: 'post-section',
+        })
+        Object.assign(h2,{
+            innerHTML: '게시판',
+            style : 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
+        })
+        Object.assign(img,{
+            id : 'post-img',
+            src : './img/post.png'
+        })
+        Object.assign(input,{
+            id : 'post-searchinput',
+            placeholder : '검색어를 입력하세요.'
+        })
+        Object.assign(table,{
+            id : 'post-table',
+            width : '100%'
+        })
+        Object.assign(button,{
+            id : 'post-btnwrite',
+            textContent : '글쓰기',
+        })
+        
     })
 </script>
 </html>
