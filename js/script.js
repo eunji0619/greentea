@@ -306,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         span4.setAttribute('class', 'span_op')
         span5.setAttribute('class', 'span_op')
         span6.setAttribute('class', 'span_op')
+        span7.setAttribute('class', 'span_op')
 
         //div 타이틀
         span1.textContent = '글번호'
@@ -323,10 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
         div4.setAttribute('class', 'div_op')
         div5.setAttribute('class', 'div_op')
         div6.setAttribute('class', 'div_op')
-        div7.setAttribute('class', 'div_op')
+        div7.setAttribute('class', 'div_op7')
 
         //img 넣기
-        // img.setAttribute('src', '/goodimg/코딩싫어.jpg')
+        img.setAttribute('src', '/goodimg/코딩싫어1.jpg')
         img.setAttribute('class', 'sp')
 
         //textarea Css
