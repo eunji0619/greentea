@@ -26,13 +26,13 @@ body{
 #aside{
     width: 14%;
     margin-right: 1%;
-    height: 510px;
+    height: 600px;
     overflow: hidden;
     /* background-color: aqua; */
 }
 .aside_img{
     width: auto;
-    height: 510px;
+    height: 600px;
 }
 .container2{
     width: 100%;
@@ -71,7 +71,7 @@ body{
 }
 
 /* 게시글 section */
-#whole{
+#whole {
     width: 85%;
 }
 #post-section{
