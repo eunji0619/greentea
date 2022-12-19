@@ -16,166 +16,238 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // 데이터를 JSON화 시켜줌
 
-    const data_box = localLoad()
+    let data_box = []
+    // 사용할 데이터 배열에 스토리지 데이터 받음
+
     let count
     // 고유넘버
-    if (data_box.length == 0) {
-        count = 0
-        // 스토리지에 데이터가 없으면 0(1)부터 다시 시작
-    } else {
-        count = data_box[data_box.length - 1].id_num
-        // 스토리지에서 받은 데이터(배열)의 마지막 요소의 id_num을 받아
-        // count가 겹치지 않게 
-    }
 
-    // 게시판 생성 시작
-    const lists_section = document.getElementById("lists-section")
-    const section = document.createElement('section');  //상단바메뉴를 뺀 전체 내용
-    const h2 = document.createElement('h2');    //타이틀
-    const img = document.createElement('img');  //게시판 이미지
-    const hr = document.createElement('hr');
-    const input = document.createElement('input');  //검색
-    const group = document.createElement('colgroup'); //각 컬럼에 width를 주기위한태그(colgroup 태그의 width 속성)
-    const table = document.createElement('table');  //테이블 생성
-    const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
-    const tr = document.createElement('tr');
-    const tbody = document.createElement('tbody')
-    const page_numbers = document.createElement('div') // 페이지 넘버
-    const button = document.createElement('button');    //글쓰기 버튼
 
-    const width_arr = [10, 25, 10, 10, 30];     //각 컬럼에 width 부여
-    const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];     //컬럼 제목들
+    //# 게시판 생성 시작
+    // 게시판 생성 함수 시작
+    let notice_board_create = function () {
+        data_box = localLoad()
 
-    lists_section.appendChild(section);
-    Object.assign(section, {
-        id: 'post-list',
-        margin: '30px 15px'
-    })
-    Object.assign(h2, {
-        innerHTML: '게시판',
-        style: 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
-    })
-    Object.assign(img, {
-        src: './img/post.png'
-    })
-    Object.assign(input, {
-        id: 'search_input',
-        placeholder: '검색어를 입력하세요.'
-    })
-    Object.assign(table, {
-        width: '100%'
-    })
-    Object.assign(page_numbers, {
-        id: "page-numbers"
-    })
-    Object.assign(button, {
-        id: 'btn-write',
-        textContent: '글쓰기',
-        style: 'background-color:blue;'
-    })
-    Object.assign(thead, {
-        id: "thead-01"
-    })
-    Object.assign(tbody, {
-        id: "tbody-01"
-    })
-    section.append(img, h2, hr, input, table, page_numbers, button);
-    table.append(group, thead, tbody);
-    thead.appendChild(tr);
-
-    width_arr.forEach(v => {
-        const col = document.createElement('col');
-        col.style.cssText = `width : ${v}%`;
-        group.appendChild(col);
-    })
-    arr.forEach(v => {
-        const th = document.createElement('th');
-        th.textContent = v;
-        tr.appendChild(th);
-    })
-
-    // 리스트 작성 함수 시작
-    const list_cteate = function (a) {
-        const tbody = document.getElementById("tbody-01")
-        const tr1 = document.createElement("tr");
-        const numtd = document.createElement('td');         //글번호 td
-        const titletd = document.createElement('td');       //제목 td
-        const writertd = document.createElement('td');      //작성자 td
-        const viewstd = document.createElement('td');       //조회수 td
-        const datatd = document.createElement('td');        //작성일자 td
-
-        numtd.textContent = data_box[a].id_num;
-        titletd.textContent = data_box[a].title;
-        writertd.textContent = data_box[a].writer;
-        viewstd.textContent = data_box[a].views;
-        datatd.textContent = data_box[a].date;
-
-        tbody.appendChild(tr1);
-        tr1.append(numtd, titletd, writertd, viewstd, datatd);
-
-        tr1.addEventListener('click', (event) => {
-            data_box[a].views++
-            if (document.getElementById("revise-div")) {
-                const div0 = document.getElementById("confirm-section")
-                const revise_div = document.getElementById("revise-div")
-                div0.removeChild(revise_div)
-            }
-            list_revise(a)
-            localSave(data_box)
-            start_list()
-        })
-    }
-    // 리스트 작성 함수 끝
-
-    // 첫 시작 tbody 함수
-    const start_list = function () {
-        if (data_box.length !== 0) {
-            if (data_box.length > 10) {
-                for (let i = data_box.length - 1; i > data_box.length - 11; i--) {
-                    list_cteate(i)
-                }
-            } else {
-                for (let i = data_box.length - 1; i >= 0; i--) {
-                    list_cteate(i)
-                }
-            }
+        if (data_box.length == 0) {
+            count = 0
+            // 스토리지에 데이터가 없으면 0(1)부터 다시 시작
+        } else {
+            count = data_box[data_box.length - 1].id_num
+            // 스토리지에서 받은 데이터(배열)의 마지막 요소의 id_num을 받아 count를 이어준다.
         }
-    }
-    // 첫 시작 tbody 함수 끝
 
-    start_list()
+        const lists_section = document.getElementById("lists-section")
+        const section = document.createElement('section');  //상단바메뉴를 뺀 전체 내용
+        const h2 = document.createElement('h2');    //타이틀
+        const img = document.createElement('img');  //게시판 이미지
+        const hr = document.createElement('hr');
+        const input = document.createElement('input');  //검색
+        const group = document.createElement('colgroup'); //각 컬럼에 width를 주기위한태그(colgroup 태그의 width 속성)
+        const table = document.createElement('table');  //테이블 생성
+        const thead = document.createElement('thead'); //표의 제목을 나타내는 태그
+        const tr = document.createElement('tr');
+        const tbody = document.createElement('tbody')
+        const page_numbers = document.createElement('div') // 페이지 넘버
+        const button = document.createElement('button');    //글쓰기 버튼
 
-    const page_num = Math.ceil(data_box.length / 10)
-    // 나눴을 때 올림해주는 연산입니다. ex) 게시물이 45개일때 페이지는 5장이니까..
-    // 페이지 넘버를 미리 저장할게요
-    if (data_box.length > 0) {
-        for (let j = page_num; j > 0; j--) {
-            const page_number = document.createElement('span')
-            page_numbers.appendChild(page_number)
-            page_number.textContent = j
-            // 페이지 넘버를 append해줍니다.
-            page_number.addEventListener('click', (event) => {
-                const tbody_01 = document.getElementById("tbody-01")
-                table.removeChild(tbody_01)
-                // table에 tbody 태그를 만들어서 지우기 쉽게 만들었습니다.
-                // 지우고 다시 넣겠습니다.
-                const tbody = document.createElement('tbody')
-                tbody.setAttribute("id", "tbody-01")
-                table.appendChild(tbody)
-                if (j !== 1) {
-                    for (let k = data_box.length - 1 - (page_num - j) * 10; k > data_box.length - 11 - (page_num - j) * 10; k--) {
-                        list_cteate(k)
-                    }
-                } else {
-                    for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
-                        list_cteate(k)
-                    }
-                }
-                // 뒤에서 10개씩 끊어가는 느낌으로다가
+        const width_arr = [10, 25, 10, 10, 30];     //각 컬럼에 width 부여
+        const arr = ['글번호', '제목', '작성자', '조회수', '작성일자'];     //컬럼 제목들
+
+        lists_section.appendChild(section);
+        Object.assign(section, {
+            id: 'post-list',
+            margin: '30px 15px'
+        })
+        Object.assign(h2, {
+            innerHTML: '게시판',
+            style: 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
+        })
+        Object.assign(img, {
+            src: './img/post.png'
+        })
+        Object.assign(input, {
+            id: 'search_input',
+            placeholder: '검색어를 입력하세요.'
+        })
+        Object.assign(table, {
+            width: '100%'
+        })
+        Object.assign(page_numbers, {
+            id: "page-numbers"
+        })
+        Object.assign(button, {
+            id: 'btn-write',
+            textContent: '글쓰기',
+            style: 'background-color:blue;'
+        })
+        Object.assign(thead, {
+            id: "thead-01"
+        })
+        Object.assign(tbody, {
+            id: "tbody-01"
+        })
+        section.append(img, h2, hr, input, table, page_numbers, button);
+        table.append(group, thead, tbody);
+        thead.appendChild(tr);
+
+        width_arr.forEach(v => {
+            const col = document.createElement('col');
+            col.style.cssText = `width : ${v}%`;
+            group.appendChild(col);
+        })
+        arr.forEach(v => {
+            const th = document.createElement('th');
+            th.textContent = v;
+            tr.appendChild(th);
+        })
+        // 게시판 틀 작성
+
+        // 게시판 글(한줄) 생성 함수 시작
+        const list_cteate = function (a) {
+            const tbody = document.getElementById("tbody-01")
+            const tr1 = document.createElement("tr");
+            const numtd = document.createElement('td');         //글번호 td
+            const titletd = document.createElement('td');       //제목 td
+            const writertd = document.createElement('td');      //작성자 td
+            const viewstd = document.createElement('td');       //조회수 td
+            const datatd = document.createElement('td');        //작성일자 td
+
+            Object.assign(tr1, {
+                className: "board-list-tr"
+            })
+            Object.assign(numtd, {
+                className: "board-list-num",
+                textContent: data_box[a].id_num
+            })
+            Object.assign(titletd, {
+                className: "board-list-title",
+                textContent: data_box[a].title
+            })
+            Object.assign(writertd, {
+                className: "board-list-witer",
+                textContent: data_box[a].writer
+            })
+            Object.assign(viewstd, {
+                className: "board-list-views",
+                textContent: data_box[a].views
+            })
+            Object.assign(datatd, {
+                className: "board-list-date",
+                textContent: data_box[a].date
+            })
+
+            tbody.appendChild(tr1);
+            tr1.append(numtd, titletd, writertd, viewstd, datatd);
+
+            tr1.addEventListener('click', (event) => {
+                data_box[a].views++
+                localSave(data_box)
+                list_revise(a)
+                const lists_section = document.getElementById("lists-section")
+                const post_list = document.getElementById("post-list")
+                lists_section.removeChild(post_list)
             })
         }
+        // 게시판 글(한줄) 생성 함수 끝
+
+        // tbody 생성 시작
+        if (data_box.length > 10) {
+            for (let i = data_box.length - 1; i > data_box.length - 11; i--) {
+                list_cteate(i)
+                // 최신 게시글이 위에 올라오게끔, 최신 글 10개를 제일 첫 화면에 생성
+            }
+        } else {
+            //  게시글이 10개가 안될 경우 게시글 외에 더미를 생성해서 10칸을 채움
+            for (let i = data_box.length - 1; i >= 0; i--) {
+                list_cteate(i)
+            }
+            for (let i = 0; i < 10 - data_box.length; i++) {
+                const tbody = document.getElementById("tbody-01")
+                const tr_dummy = document.createElement("tr")
+                const td_dummy01 = document.createElement("td")
+                const td_dummy02 = document.createElement("td")
+                const td_dummy03 = document.createElement("td")
+                const td_dummy04 = document.createElement("td")
+                const td_dummy05 = document.createElement("td")
+                tbody.appendChild(tr_dummy)
+                tr_dummy.append(td_dummy01, td_dummy02, td_dummy03, td_dummy04, td_dummy05)
+                Object.assign(tr_dummy, {
+                    className: "board-list-tr-dummy"
+                    // 더비 tr에 스타일 부여할 수 있게
+                })
+            }
+        }
+        // tbody 생성 시작
+
+        // 페이지 버튼 생성 시작 
+        const page_num = Math.ceil(data_box.length / 10)
+        // 나눴을 때 올림해주는 연산입니다. ex) 게시물이 45개일때 페이지는 5장이니까..
+        // 페이지 넘버를 미리 저장할게요
+        if (data_box.length > 0) {
+            for (let j = page_num; j > 0; j--) {
+                const page_numbers = document.getElementById("page-numbers")
+                const page_number = document.createElement('span')
+                page_numbers.appendChild(page_number)
+                page_number.textContent = j
+                // 페이지 넘버를 append해줍니다.
+                page_number.addEventListener('click', (event) => {
+                    const tbody_01 = document.getElementById("tbody-01")
+                    table.removeChild(tbody_01)
+                    // table에 tbody 태그를 만들어서 지우기 쉽게 만들었습니다.
+                    // 지우고 다시 넣겠습니다.
+                    const tbody = document.createElement('tbody')
+                    tbody.setAttribute("id", "tbody-01")
+                    table.appendChild(tbody)
+                    if (j !== 1) {
+                        for (let k = data_box.length - 1 - (page_num - j) * 10; k > data_box.length - 11 - (page_num - j) * 10; k--) {
+                            list_cteate(k)
+                        }
+                    } else {
+                        for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
+                            list_cteate(k)
+                        }
+                        for (let i = 0; i < 10 - data_box.length; i++) {
+                            const tbody = document.getElementById("tbody-01")
+                            const tr_dummy = document.createElement("tr")
+                            const td_dummy01 = document.createElement("td")
+                            const td_dummy02 = document.createElement("td")
+                            const td_dummy03 = document.createElement("td")
+                            const td_dummy04 = document.createElement("td")
+                            const td_dummy05 = document.createElement("td")
+                            tbody.appendChild(tr_dummy)
+                            tr_dummy.append(td_dummy01, td_dummy02, td_dummy03, td_dummy04, td_dummy05)
+                            Object.assign(tr_dummy, {
+                                className: "board-list-tr-dummy"
+                            })
+                        }
+                    }
+                    // 뒤에서 10개씩 끊어가는 느낌으로다가
+                })
+            }
+        }
+        // 페이지 버튼 생성 끝
+
     }
+    // 게시판 생성 함수 끝
+
+    notice_board_create()
     //게시판 작성 끝
+
+    // 게시판 버튼 시작
+    list_button.addEventListener('click',(event)=>{
+        if(document.getElementById("revise-div")){
+            const div0 = document.getElementById("confirm-section")
+            const div1 = document.getElementById("revise-div")
+            div0.removeChild(div1)
+        }        
+        if(document.getElementById("write-write-con")){
+            const div0 = document.getElementById("write-section")
+            const div1 = document.getElementById("write-write-con")
+            div0.removeChild(div1)
+        }
+        notice_board_create()
+    })
+    // 게시판 버튼 끝
 
     // 글 수정 함수 시작
     const list_revise = function (a) {
@@ -342,12 +414,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // 글 수정 함수 끝
 
-
-
     // 글작성 버튼 시작
     write_button.addEventListener('click', (event) => {
         // 글작성 창이 하나만 뜨게
         if (!document.getElementById('write-write-con')) {
+            const lists_section = document.getElementById("lists-section")
+            const post_list = document.getElementById("post-list")
+            lists_section.removeChild(post_list)
+
             const write_section = document.getElementById('write-section')
             const write_con = document.createElement('div') // 큰 틀
             const hr01 = document.createElement('hr') // 줄
@@ -519,13 +593,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     localSave(data_box)
                     // 스토리지에 저장하고 바로 창 삭제??
                     write_section.removeChild(write_con)
+                    notice_board_create()
                 }
             })
 
             list_button.addEventListener('click', (event) => {
                 if (window.confirm('작성하신 글을 게시하지 않습니다. 게시판으로 돌아갑니다.')) {
                     write_section.removeChild(write_con)
-                    // 창 삭제 후 -> 목록 창 생성 or 메인 화면
+                    notice_board_create()
                 }
             })
         }
