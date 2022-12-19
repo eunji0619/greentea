@@ -577,24 +577,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 글 작성 버튼
             regist_button.addEventListener('click', (event) => {
-                if (window.confirm('작성하신 글을 게시하시겠습니까?')) {
-                    count++
-                    let now = new Date();
-                    // id_num 1부터 시작합니다.
-                    const data = {
-                        id_num: count,
-                        title: title_input.value,
-                        views: 0,
-                        writer: writer_input.value,
-                        date: now,
-                        content: content_input.value,
+                if(title_input.value.length<2){
+                    window.confirm('제목은 두글자 이상이어야 합니다.')
+                }
+                else{
+                    if (window.confirm('작성하신 글을 게시하시겠습니까?')) {
+                        count++
+                        let now = new Date();
+                        // id_num 1부터 시작합니다.
+                        const data = {
+                            id_num: count,
+                            title: title_input.value,
+                            views: 0,
+                            writer: writer_input.value,
+                            date: now,
+                            content: content_input.value,
+                        }
+                        // 스토리지에 고유 넘버, 제목, 조회수, 작성자, 시간, 내용 저장
+                        data_box.push(data)
+                        localSave(data_box)
+                        // 스토리지에 저장하고 바로 창 삭제??
+                        write_section.removeChild(write_con)
+                        notice_board_create()
                     }
-                    // 스토리지에 고유 넘버, 제목, 조회수, 작성자, 시간, 내용 저장
-                    data_box.push(data)
-                    localSave(data_box)
-                    // 스토리지에 저장하고 바로 창 삭제??
-                    write_section.removeChild(write_con)
-                    notice_board_create()
                 }
             })
 
