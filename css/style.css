@@ -72,11 +72,10 @@ body{
 }
 
 /* 게시글 section */
-#whole {
-    /* width: 85%; */
-    width: 600px;
+#post-main{
+    width: 100%;
 }
-#post-section{
+#sections{
     width: auto;
     margin-top: 10px;
     padding: 10px;
