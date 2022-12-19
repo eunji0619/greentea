@@ -102,8 +102,11 @@ body{
     color: white;
     border-right: 2px solid white;
 }
-#post-tr1:hover{
-    background-color: rgb(223, 222, 222);
+.board-list-tr:hover{
+    background-color: rgb(173, 173, 173);
+}
+.board-list-tr-dummy:hover{
+    background-color: rgb(173, 173, 173);
 }
 #post-btnwrite{
     margin-top: 15px;
