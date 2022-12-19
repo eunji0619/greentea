@@ -338,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
         text5.style.cssText = 'border : 1px soild #000;'
         text6.style.cssText = 'border : 1px soild #000;'
 
+        
         //버튼 타이틀
         button1.textContent = '목록'
         button2.textContent = '저장'
