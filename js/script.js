@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
         div7.setAttribute('class', 'div_op7')
 
         //img 넣기
-        img.setAttribute('src', '/goodimg/코딩싫어1.jpg')
+        img.setAttribute('src', './img/코딩싫어1.jpg')
         img.setAttribute('class', 'sp')
 
         //textarea Css
