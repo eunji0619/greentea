@@ -39,15 +39,7 @@ body{
     display: flex;
     margin-bottom: 10px;
 }
-#post-btnwrite{
-    margin-top: 15px;
-    width: 100px;
-    height: 30px;
-    background-color: rgb(152, 152, 219);
-    border: 0px;
-    border-radius: 5px;
-    color: white;
-}
+
 /* footer */
 #footer{
     width: auto;
@@ -113,7 +105,7 @@ body{
     background-color: rgb(223, 222, 222);
 }
 #post-btnwrite{
-    margin-top: 30px;
+    margin-top: 15px;
     width: 100px;
     height: 30px;
     background-color: rgb(152, 152, 219);
