@@ -77,9 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             id: "page-numbers"
         })
         Object.assign(button, {
-            id: 'btn-write',
-            textContent: '글쓰기',
-            style: 'background-color:blue;'
+            id: 'post-btnwrite',
+            textContent: '글쓰기'
         })
         Object.assign(thead, {
             id: "thead-01"
