@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 스토리지에서 받은 데이터(배열)의 마지막 요소의 id_num을 받아 count를 이어준다.
         }
 
-        const lists_section = document.getElementById("lists-section")
+        const lists_section = document.getElementById("sections")
         const section = document.createElement('section');  //상단바메뉴를 뺀 전체 내용
         const h2 = document.createElement('h2');    //타이틀
         const img = document.createElement('img');  //게시판 이미지
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 data_box[a].views++
                 localSave(data_box)
                 list_revise(a)
-                const lists_section = document.getElementById("lists-section")
+                const lists_section = document.getElementById("sections")
                 const post_list = document.getElementById("post-list")
                 lists_section.removeChild(post_list)
             })
@@ -237,12 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
     list_button.addEventListener('click', (event) => {
 
         if (document.getElementById("revise-div")) {
-            const div0 = document.getElementById("confirm-section")
+            const div0 = document.getElementById("sections")
             const div1 = document.getElementById("revise-div")
             div0.removeChild(div1)
         }
         if (document.getElementById("write-write-con")) {
-            const div0 = document.getElementById("write-section")
+            const div0 = document.getElementById("sections")
             const div1 = document.getElementById("write-write-con")
             div0.removeChild(div1)
         }
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 글 수정 함수 시작
     const list_revise = function (a) {
 
-        const div0 = document.getElementById("confirm-section")
+        const div0 = document.getElementById("sections")
         div0.setAttribute('class', 'dd')
         //클릭후 div화면 on
         let arr = [];
@@ -419,11 +419,11 @@ document.addEventListener('DOMContentLoaded', () => {
     write_button.addEventListener('click', (event) => {
         // 글작성 창이 하나만 뜨게
         if (!document.getElementById('write-write-con')) {
-            const lists_section = document.getElementById("lists-section")
+            const lists_section = document.getElementById("sections")
             const post_list = document.getElementById("post-list")
             lists_section.removeChild(post_list)
 
-            const write_section = document.getElementById('write-section')
+            const write_section = document.getElementById('sections')
             const write_con = document.createElement('div') // 큰 틀
             const hr01 = document.createElement('hr') // 줄
             const hr02 = document.createElement('hr')

@@ -73,7 +73,8 @@ body{
 
 /* 게시글 section */
 #whole {
-    width: 85%;
+    /* width: 85%; */
+    width: 600px;
 }
 #post-section{
     width: auto;
