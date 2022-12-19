@@ -187,7 +187,9 @@ body{
     background-color: rgb(230, 230, 230);
     height: 30px;
 }
+
 /* 게시글수정 */
+
 /* 전체배경div */
 #div-bg{
     margin-top: 10px;
@@ -280,3 +282,4 @@ textarea{
     top: 15px;
     margin-left: 5px;
 }
+/* 게시글수정 끝 */
