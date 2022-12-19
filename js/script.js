@@ -246,8 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const div1 = document.getElementById("write-write-con")
             div0.removeChild(div1)
         }
-        if(document.getElementById("write-write-con"))
-        notice_board_create()
+        if(!document.getElementById("post-list")) {
+            notice_board_create()
+        }
     })
     // 게시판 버튼 끝
 
