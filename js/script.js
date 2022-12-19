@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             style: 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
         })
         Object.assign(img, {
-            id:"post-img",
+            id: "post-img",
             src: './img/post.png'
         })
         Object.assign(input, {
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
                             list_cteate(k)
                         }
-                        for (let i = 0; i < 10 - data_box.length%10; i++) {
+                        for (let i = 0; i < 10 - data_box.length % 10; i++) {
                             const tbody = document.getElementById("tbody-01")
                             const tr_dummy = document.createElement("tr")
                             const td_dummy01 = document.createElement("td")
@@ -235,19 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
     //게시판 작성 끝
 
     // 게시판 버튼 시작
-    list_button.addEventListener('click',(event)=>{
-        if(document.getElementById("revise-div")){
+    list_button.addEventListener('click', (event) => {
+
+        if (document.getElementById("revise-div")) {
             const div0 = document.getElementById("confirm-section")
             const div1 = document.getElementById("revise-div")
             div0.removeChild(div1)
-        }        
-        if(document.getElementById("write-write-con")){
+        }
+        if (document.getElementById("write-write-con")) {
             const div0 = document.getElementById("write-section")
             const div1 = document.getElementById("write-write-con")
             div0.removeChild(div1)
         }
-        if(!document.getElementById("post-list")) {
-            notice_board_create()
+        if (!document.getElementById("post-list")) {
+            if (window.confirm('저장하지 않으셨습니다. 게시판으로 이동하시겠습니까?')) {
+                notice_board_create()
+            }
         }
     })
     // 게시판 버튼 끝
@@ -383,37 +386,33 @@ document.addEventListener('DOMContentLoaded', () => {
             textContent: data_box[a].content
         })
 
-
-        // 삭제버튼
-        function del() {
-            div0.removeChild(div00)
-        }
-        button3.addEventListener('click', del)
-        // 저장버튼
-        let state = false
-        function cor() {
-            // div1.removeChild(input1)
-            if (!state) {
-                text1.style.cssText = 'border : 0;'
-                text2.style.cssText = 'border : 0;'
-                text3.style.cssText = 'border : 0;'
-                text4.style.cssText = 'border : 0;'
-                text5.style.cssText = 'border : 0;'
-                text6.style.cssText = 'border : 0;'
-                arr.push(obj)
-                localStorage.setItem('good', JSON.stringify(arr))
-                console.log(arr)
+        // 목록 버튼
+        button1.addEventListener('click', () => {
+            if (window.confirm('게시판으로 이동하시겠습니까?')) {
+                div0.removeChild(div00)
+                notice_board_create()
             }
-            // else{
-            //     input1.style.cssText = 'border : 0;'
-            //     input2.style.cssText = 'border : 0;'
-            //     input3.style.cssText = 'border : 0;'
-            //     input4.style.cssText = 'border : 0;'
-            //     input5.style.cssText = 'border : 0;'
-            //     input6.style.cssText = 'border : 0;'}
-            // state = !state
-        }
-        button2.addEventListener('click', cor)
+        })
+        // 저장 버튼
+        button2.addEventListener('click', () => {
+            if (window.confirm('저장하시겠습니까? 저장 후엔 게시판으로 이동합니다.')) {
+                data_box[a].title = text1.value
+                data_box[a].writer = text4.value
+                data_box[a].content = text6.value
+                localSave(data_box)
+                div0.removeChild(div00)
+                notice_board_create()
+            }
+        })
+        // 삭제 버튼
+        button3.addEventListener('click', () => {
+            if (window.confirm('삭제하시겠습니까? 삭제 후엔 게시판으로 이동합니다.')) {
+                data_box.splice(data_box.indexOf(data_box[a]), 1)
+                localSave(data_box)
+                div0.removeChild(div00)
+                notice_board_create()
+            }
+        })
     }
     // 글 수정 함수 끝
 
