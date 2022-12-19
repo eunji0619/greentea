@@ -89,16 +89,17 @@ body{
     width: 20px;
     height: 20px;
 }
-#post-searchinput{
+#search_input{
     width: 250px;
     height: 25px;
+    margin-bottom: 10px;
 }
-#post-table{
+/* #post-table{
     margin-top: 6px;
     width: 100%;
     border-collapse: collapse
-}
-#post-th{
+} */
+#thead-01{
     background-color: rgb(100, 99, 99);
     margin: 0 10px;
     color: white;
