@@ -1,5 +1,4 @@
 /* 게시판 CSS 시작 */
-
 body{
     font-family: 'Varela Round', sans-serif;
 }
@@ -183,6 +182,7 @@ body{
 .board-list-tr{
     background-color: gainsboro;
     height: 30px;
+    text-align: center;
 }
 .board-list-tr-dummy{
     background-color: rgb(230, 230, 230);
