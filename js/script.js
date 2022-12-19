@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             style: 'display:inline;'    //h2의 기본속성인 줄바꿈 해제
         })
         Object.assign(img, {
+            id:"post-img",
             src: './img/post.png'
         })
         Object.assign(input, {
@@ -206,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         for (let k = data_box.length - 1 - (page_num - j) * 10; k >= 0; k--) {
                             list_cteate(k)
                         }
-                        for (let i = 0; i < 10 - data_box.length; i++) {
+                        for (let i = 0; i < 10 - data_box.length%10; i++) {
                             const tbody = document.getElementById("tbody-01")
                             const tr_dummy = document.createElement("tr")
                             const td_dummy01 = document.createElement("td")
@@ -245,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const div1 = document.getElementById("write-write-con")
             div0.removeChild(div1)
         }
+        if(document.getElementById("write-write-con"))
         notice_board_create()
     })
     // 게시판 버튼 끝
