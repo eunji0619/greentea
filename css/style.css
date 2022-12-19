@@ -102,3 +102,13 @@ img {
     background-color: orange;
 }
 /* 작성글 CSS 끝 */
+
+/* 게시판 */
+.board-list-tr{
+    background-color: gainsboro;
+    height: 30px;
+}
+.board-list-tr-dummy{
+    background-color: rgb(230, 230, 230);
+    height: 30px;
+}
